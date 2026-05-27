@@ -362,15 +362,17 @@ useEffect(() => {
 
             {/* Right Content */}
             <div className="lg:col-span-8 space-y-6 text-muted-foreground leading-relaxed text-base">
-              <p>
-                As an <strong>Math and Stats graduate from the University of Toronto</strong>, I spent years studying probability, regression models, and experimental design. But what truly excites me is not just the mathematical elegance of a model — it is applying that rigor to understand <strong>human behavior, optimize products, and drive real business growth</strong>.
-              </p>
-              <p>
-                I position myself at the intersection of <strong>analytics, product strategy, and storytelling</strong>. I believe that data is only as valuable as the actions it inspires. That is why I focus heavily on translating complex metrics into intuitive, visual, and highly-actionable growth frameworks that product, marketing, and executive teams can immediately rally behind.
-              </p>
-              <p>
-                Whether it is identifying drop-off friction in an onboarding funnel, running A/B tests to optimize conversion, or building predictive customer risk models, I approach every challenge with a <strong>growth-first mindset</strong>. I am eager to join a forward-thinking product or analytics team where I can leverage my quantitative background to unlock meaningful customer and business insights.
-              </p>
+            <p>
+              As a <strong>Math and Statistics graduate from the University of Toronto</strong>, I spent years studying probability, regression models, and experimental design. What excites me most is applying that rigor to understand <strong>human behavior, optimize products, and drive business growth</strong>.
+            </p>
+
+            <p>
+              I position myself at the intersection of <strong>analytics, product strategy, and storytelling</strong>. I believe data is only as valuable as the actions it inspires, so I focus on translating complex metrics into clear, visual, and actionable insights.
+            </p>
+
+            <p>
+              Whether analyzing onboarding friction, campaign performance, or predictive risk signals, I approach problems with a <strong>growth-first mindset</strong>. I am eager to join a forward-thinking product or analytics team where I can leverage my quantitative background to unlock meaningful customer and business insights.
+            </p>
 
               {/* Mini Highlights */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-border/40">
