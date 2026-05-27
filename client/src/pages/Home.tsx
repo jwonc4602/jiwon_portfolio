@@ -1,0 +1,615 @@
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Linkedin, 
+  Github, 
+  Mail, 
+  ArrowUpRight, 
+  TrendingUp, 
+  Users, 
+  RefreshCw, 
+  Target, 
+  Award, 
+  BookOpen, 
+  Briefcase, 
+  ChevronRight, 
+  Database, 
+  Layers, 
+  BarChart3, 
+  MessageSquare, 
+  ExternalLink,
+  Code2,
+  Cpu,
+  Brain,
+  Sparkles
+} from "lucide-react";
+import GrowthCalculator from "@/components/GrowthCalculator";
+
+export default function Home() {
+  const [activeTab, setActiveTab] = useState<string>("all");
+
+  // Project details
+  const projects = [
+    {
+      id: "unible",
+      category: "product",
+      title: "UNIble Product Growth Analytics",
+      summary: "End-to-end analysis of onboarding funnels, user retention, and feature adoption to boost platform stickiness.",
+      question: "Where are users dropping off during onboarding, and how can we optimize feature discovery to increase retention?",
+      tools: ["Firebase", "SQL", "Power BI", "Funnel Analysis"],
+      insights: [
+        "Identified a 34% drop-off at the profile completion step due to excessive fields.",
+        "Discovered that users who engaged with the peer-matching feature within 48 hours had a 2.8x higher Week 4 retention rate."
+      ],
+      impact: "Recommended a simplified 2-step onboarding flow and triggered in-app nudges for peer-matching, resulting in an estimated +22% conversion uplift."
+    },
+    {
+      id: "marketing",
+      category: "marketing",
+      title: "Marketing Performance & Audience Insights",
+      summary: "Comprehensive ROAS optimization and multi-channel campaign performance audit to maximize customer acquisition.",
+      question: "Which acquisition channels and creative styles drive the highest quality audience segments with the lowest CAC?",
+      tools: ["Excel", "Pivot Tables", "KPI Analysis", "Audience Segmentation"],
+      insights: [
+        "Uncovered that while paid social had 40% higher click-through rates, organic referral traffic had a 55% higher customer lifetime value (LTV).",
+        "Identified 'student life hacks' video creatives outperformed traditional static banners by 2.4x in ROAS."
+      ],
+      impact: "Proposed shifting 15% of underperforming ad spend to peer-referral incentive programs, projecting a 12% reduction in overall CAC."
+    },
+    {
+      id: "credit",
+      category: "risk",
+      title: "Credit Default Risk Analysis",
+      summary: "Predictive modeling and risk indicators analysis to segment high-risk borrowers and improve credit approval decisions.",
+      question: "Can we predict loan default probability early using demographic and initial behavioral risk indicators?",
+      tools: ["Python", "XGBoost", "Azure", "Predictive Modeling"],
+      insights: [
+        "XGBoost model achieved an AUC-ROC of 0.86, with debt-to-income ratio and payment delay history identified as the top predictive risk indicators.",
+        "Discovered a micro-segment of young professionals with high credit utilization but extremely low default rates when paired with autopay enrollment."
+      ],
+      impact: "Developed a risk-scoring dashboard on Azure that automates approval recommendations, reducing manual review workloads by 30% while keeping defaults within a tight 1.5% margin."
+    },
+    {
+      id: "nlp",
+      category: "insights",
+      title: "NLP Audience Sentiment Analysis",
+      summary: "Social listening and emotion trend extraction from student communities to drive product marketing strategy.",
+      question: "What are the core emotional drivers and pain points discussed in student forums regarding academic and career transitions?",
+      tools: ["Python", "Hugging Face", "PyTorch", "Sentiment Analysis"],
+      insights: [
+        "Extracted 3 dominant emotion trends: anxiety around internship hunting (54%), confusion over networking (28%), and motivation for self-improvement (18%).",
+        "Discovered that mentions of 'resume reviews' spikes on Tuesday evenings, indicating prime timing for marketing campaign delivery."
+      ],
+      impact: "Informed the product team's content roadmap, leading to the creation of targeted 'Resume & Growth workshops' that achieved a 45% signup rate."
+    }
+  ];
+
+  // Experience details
+  const experiences = [
+    {
+      role: "Product Operations & Growth Analytics",
+      company: "UNIble",
+      period: "Sept 2025 – Present",
+      bullets: [
+        "Led product funnel optimization initiatives by designing custom KPI dashboards, identifying drop-offs, and recommending actionable onboarding flow improvements.",
+        "Formulated data-driven product growth strategies, collaborating with design and engineering teams to launch targeted in-app experimentations.",
+        "Conducted multi-channel acquisition audits to optimize marketing spend, identifying high-LTV student cohorts to reduce customer acquisition costs.",
+        "Synthesized complex statistical analyses into clear executive briefs for cross-functional stakeholders, aligning product updates with strategic business goals."
+      ]
+    }
+  ];
+
+  // Skills organized into modern categories
+  const skillCategories = [
+    {
+      title: "Product & Growth Analytics",
+      icon: <TrendingUp className="h-4 w-4 text-primary" />,
+      skills: ["Funnel Optimization", "A/B Testing & Experimentation", "Cohort Analysis", "User Retention Modeling", "Activation & Engagement Metrics"]
+    },
+    {
+      title: "Business Insights & KPI Reporting",
+      icon: <BarChart3 className="h-4 w-4 text-primary" />,
+      skills: ["KPI Framework Design", "Executive Dashboards", "Data Storytelling", "Stakeholder Communication", "Revenue & LTV Modeling"]
+    },
+    {
+      title: "Marketing & Audience Analytics",
+      icon: <Target className="h-4 w-4 text-primary" />,
+      skills: ["ROAS Optimization", "Audience Segmentation", "Customer Acquisition Cost (CAC)", "Multi-channel Attribution", "Social Listening & Sentiment"]
+    },
+    {
+      title: "Data & Visualization Tools",
+      icon: <Database className="h-4 w-4 text-primary" />,
+      skills: ["SQL (PostgreSQL, BigQuery)", "Python (Pandas, NumPy, Scikit-learn)", "Power BI & Tableau", "Excel (Advanced, Pivot Tables, Solver)", "Firebase Analytics"]
+    },
+    {
+      title: "Collaboration & Strategy",
+      icon: <Layers className="h-4 w-4 text-primary" />,
+      skills: ["Cross-functional Leadership", "Product Operations", "Agile Methodologies", "User Research Synthesis", "Market Opportunity Analysis"]
+    }
+  ];
+
+  // Blog / Insights previews
+  const blogPosts = [
+    {
+      title: "What Makes Users Stay? Deconstructing Retention Loops",
+      excerpt: "Why standard onboarding fails and how identifying 'aha moments' through cohort analysis can turn casual signups into daily active users.",
+      date: "May 2026",
+      readTime: "5 min read",
+      category: "Product Analytics"
+    },
+    {
+      title: "Why Most Dashboards Fail (And How to Build Ones That Drive Action)",
+      excerpt: "Most dashboards are data graveyards. Here is how to design highly-focused executive views around actionable KPIs instead of vanity metrics.",
+      date: "April 2026",
+      readTime: "4 min read",
+      category: "Business Insights"
+    },
+    {
+      title: "What Growth Analytics Actually Means in Early-Stage Products",
+      excerpt: "Moving past the buzzwords. A practical look at balancing acquisition, activation, and retention metrics when resources are limited.",
+      date: "March 2026",
+      readTime: "6 min read",
+      category: "Growth Strategy"
+    }
+  ];
+
+  const filteredProjects = activeTab === "all" 
+    ? projects 
+    : projects.filter(p => p.category === activeTab);
+
+  return (
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/10 selection:text-primary relative overflow-x-hidden">
+      
+      {/* Background Grid Lines (Swiss Design Motif) */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.03] grid grid-cols-4 md:grid-cols-12 gap-4 px-6 md:px-12">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div key={i} className="h-full border-r border-foreground" />
+        ))}
+      </div>
+
+      {/* Header / Navigation */}
+      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
+        <div className="container py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-serif font-bold text-lg tracking-tight text-foreground">
+              jiwon<span className="text-primary">.</span>choi
+            </span>
+            <span className="hidden sm:inline-block text-[10px] font-mono bg-secondary px-2 py-0.5 rounded text-secondary-foreground">
+              Applied Statistics @ U of T
+            </span>
+          </div>
+          <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
+            <a href="#about" className="hover:text-foreground transition-colors">About</a>
+            <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
+            <a href="#skills" className="hover:text-foreground transition-colors">Skills</a>
+            <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
+            <a href="#insights" className="hover:text-foreground transition-colors">Insights</a>
+            <Button variant="outline" size="sm" asChild className="hidden sm:inline-flex border-border/60 hover:bg-muted/30">
+              <a href="#contact">Contact</a>
+            </Button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden border-b border-border/40">
+        {/* Abstract Generated Background */}
+        <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply pointer-events-none">
+          <img 
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663704297874/XgnwZVUyWtDSJq4fqeVyPH/hero-bg-AJCSJD8ts9VkkfikotqQFt.webp" 
+            alt="Hero Background" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Hero Text */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-mono font-medium">
+              <Sparkles className="h-3 w-3 text-secondary-foreground" />
+              <span>Available for Product & Growth Analytics Roles</span>
+            </div>
+            
+            <div className="space-y-3">
+              <h1 className="text-4xl md:text-6xl font-serif font-extrabold tracking-tight leading-none text-foreground">
+                Jiwon Choi
+              </h1>
+              <p className="text-xl md:text-2xl font-serif text-primary italic font-medium">
+                Product, Growth & Business Analytics
+              </p>
+            </div>
+
+            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+              Turning data into growth, engagement, and actionable business insights. Bridging the gap between rigorous statistics and high-impact product strategy.
+            </p>
+
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
+                <a href="#projects" className="flex items-center gap-2">
+                  Explore Projects <ChevronRight className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button variant="outline" asChild className="border-border/60 hover:bg-muted/30">
+                <a href="#about">Learn More</a>
+              </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-6 pt-6 border-t border-border/40 max-w-md">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
+                <Linkedin className="h-4 w-4" /> LinkedIn
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
+                <Github className="h-4 w-4" /> GitHub
+              </a>
+              <a href="mailto:jiwon.choi@example.com" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
+                <Mail className="h-4 w-4" /> Email
+              </a>
+            </div>
+          </div>
+
+          {/* Hero Image / Illustration */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[380px] aspect-square rounded-2xl bg-card border border-border/40 p-4 shadow-md overflow-hidden">
+              <img 
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663704297874/XgnwZVUyWtDSJq4fqeVyPH/analytics-illustration-KqdhFnrf6qgRE95qUxmCYw.webp" 
+                alt="Product Analytics Illustration" 
+                className="w-full h-full object-contain rounded-xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 border-b border-border/40">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left Header */}
+            <div className="lg:col-span-4 space-y-4">
+              <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+                01 // Biography
+              </span>
+              <h2 className="text-3xl font-serif font-bold text-foreground">
+                The Intersection of Numbers & Strategy
+              </h2>
+            </div>
+
+            {/* Right Content */}
+            <div className="lg:col-span-8 space-y-6 text-muted-foreground leading-relaxed text-base">
+              <p>
+                As an <strong>Applied Statistics graduate from the University of Toronto</strong>, I spent years studying probability, regression models, and experimental design. But what truly excites me is not just the mathematical elegance of a model — it is applying that rigor to understand <strong>human behavior, optimize products, and drive real business growth</strong>.
+              </p>
+              <p>
+                I position myself at the intersection of <strong>analytics, product strategy, and storytelling</strong>. I believe that data is only as valuable as the actions it inspires. That is why I focus heavily on translating complex metrics into intuitive, visual, and highly-actionable growth frameworks that product, marketing, and executive teams can immediately rally behind.
+              </p>
+              <p>
+                Whether it is identifying drop-off friction in an onboarding funnel, running A/B tests to optimize conversion, or building predictive customer risk models, I approach every challenge with a <strong>growth-first mindset</strong>. I am eager to join a forward-thinking product or analytics team where I can leverage my quantitative background to unlock meaningful customer and business insights.
+              </p>
+
+              {/* Mini Highlights */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-border/40">
+                <div className="space-y-1">
+                  <div className="text-lg font-bold text-foreground font-serif">U of T</div>
+                  <div className="text-xs text-muted-foreground font-mono">Applied Statistics</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-lg font-bold text-foreground font-serif">Growth-First</div>
+                  <div className="text-xs text-muted-foreground font-mono">Analytical Mindset</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-lg font-bold text-foreground font-serif">Data-Led</div>
+                  <div className="text-xs text-muted-foreground font-mono">Storytelling</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section id="projects" className="py-20 border-b border-border/40 bg-muted/10">
+        <div className="container space-y-12">
+          {/* Header & Tabs */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-4">
+              <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+                02 // Case Studies
+              </span>
+              <h2 className="text-3xl font-serif font-bold text-foreground">
+                Featured Analytics Projects
+              </h2>
+            </div>
+            
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap gap-2 font-mono text-xs">
+              {["all", "product", "marketing", "risk", "insights"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-3 py-1.5 rounded border transition-all uppercase tracking-wider ${
+                    activeTab === tab
+                      ? "bg-primary text-primary-foreground border-primary font-semibold"
+                      : "bg-card text-muted-foreground border-border/60 hover:text-foreground hover:border-border"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Interactive Simulator Highlight */}
+          <div className="max-w-4xl mx-auto">
+            <GrowthCalculator />
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+            {filteredProjects.map((project) => (
+              <Card key={project.id} className="border-border/60 hover:border-primary/40 hover:shadow-md transition-all duration-300 bg-card flex flex-col justify-between overflow-hidden">
+                <CardContent className="p-6 space-y-6">
+                  {/* Card Header */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono bg-secondary text-secondary-foreground px-2 py-0.5 rounded uppercase tracking-wider font-semibold">
+                        {project.category} case study
+                      </span>
+                      <ArrowUpRight className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+                    </div>
+                    <h3 className="text-xl font-serif font-bold text-foreground">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {project.summary}
+                    </p>
+                  </div>
+
+                  {/* Core Question */}
+                  <div className="bg-muted/30 border-l-2 border-primary/40 p-3 rounded-r-md">
+                    <span className="text-[10px] font-mono text-primary uppercase tracking-wider block font-bold">
+                      Key Business Question
+                    </span>
+                    <span className="text-xs text-foreground italic">
+                      &ldquo;{project.question}&rdquo;
+                    </span>
+                  </div>
+
+                  {/* Insights & Recommendations */}
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block font-bold">
+                        Key Insights Generated
+                      </span>
+                      <ul className="list-disc list-inside text-xs text-muted-foreground space-y-1 mt-1 pl-1">
+                        {project.insights.map((insight, idx) => (
+                          <li key={idx} className="leading-relaxed">{insight}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="border-t border-border/40 pt-3">
+                      <span className="text-[10px] font-mono text-secondary-foreground uppercase tracking-wider block font-bold">
+                        Impact & Recommendations
+                      </span>
+                      <p className="text-xs text-foreground mt-1 leading-relaxed font-medium">
+                        {project.impact}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Tools Badges */}
+                  <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border/30">
+                    {project.tools.map((tool) => (
+                      <Badge key={tool} variant="outline" className="text-[10px] font-mono bg-muted/20 text-muted-foreground border-border/40">
+                        {tool}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20 border-b border-border/40">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left Header */}
+            <div className="lg:col-span-4 space-y-4">
+              <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+                03 // Expertise
+              </span>
+              <h2 className="text-3xl font-serif font-bold text-foreground">
+                Analytical Toolkit & Core Competencies
+              </h2>
+              <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+                Organized around growth and business impact, avoiding overly engineering-heavy framing.
+              </p>
+            </div>
+
+            {/* Right Skills Grid */}
+            <div className="lg:col-span-8 space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {skillCategories.map((category, idx) => (
+                  <Card key={idx} className="border-border/60 bg-card shadow-sm hover:border-primary/20 transition-all">
+                    <CardContent className="p-5 space-y-4">
+                      <div className="flex items-center gap-2.5 pb-2 border-b border-border/40">
+                        {category.icon}
+                        <h3 className="font-serif font-bold text-sm text-foreground">
+                          {category.title}
+                        </h3>
+                      </div>
+                      <ul className="space-y-2">
+                        {category.skills.map((skill) => (
+                          <li key={skill} className="text-xs text-muted-foreground flex items-center gap-2">
+                            <span className="h-1 w-1 rounded-full bg-primary/60 shrink-0" />
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 border-b border-border/40 bg-muted/10">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left Header */}
+            <div className="lg:col-span-4 space-y-4">
+              <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+                04 // Professional Path
+              </span>
+              <h2 className="text-3xl font-serif font-bold text-foreground">
+                Hands-On Growth Experience
+              </h2>
+            </div>
+
+            {/* Right Timeline */}
+            <div className="lg:col-span-8 space-y-8">
+              {experiences.map((exp, idx) => (
+                <div key={idx} className="relative pl-6 border-l border-primary/20 space-y-4">
+                  {/* Timeline Dot */}
+                  <div className="absolute -left-[5.5px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary" />
+                  
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <div>
+                      <h3 className="text-lg font-serif font-bold text-foreground">
+                        {exp.role}
+                      </h3>
+                      <p className="text-sm font-medium text-primary">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground bg-card px-2.5 py-1 rounded border border-border/40 self-start sm:self-center">
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  <ul className="space-y-2.5 text-sm text-muted-foreground leading-relaxed pl-1">
+                    {exp.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx} className="flex items-start gap-2">
+                        <span className="text-primary mt-1 shrink-0">•</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Optional Blog / Insights Section */}
+      <section id="insights" className="py-20 border-b border-border/40">
+        <div className="container space-y-12">
+          <div className="space-y-4">
+            <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+              05 // Thought Leadership
+            </span>
+            <h2 className="text-3xl font-serif font-bold text-foreground">
+              Analytics & Growth Insights
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
+              Writing about the practical application of statistics to product growth and business metrics.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {blogPosts.map((post, idx) => (
+              <Card key={idx} className="border-border/60 hover:border-primary/20 hover:shadow-sm transition-all bg-card flex flex-col justify-between">
+                <CardContent className="p-5 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
+                      <span>{post.date}</span>
+                      <span className="bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded">
+                        {post.category}
+                      </span>
+                    </div>
+                    <h3 className="text-md font-serif font-bold text-foreground leading-snug hover:text-primary transition-colors cursor-pointer">
+                      {post.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-border/40 flex items-center justify-between text-[10px] font-mono text-primary font-semibold">
+                    <span>{post.readTime}</span>
+                    <span className="flex items-center gap-1 hover:underline cursor-pointer">
+                      Read Article <ArrowUpRight className="h-3 w-3" />
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-muted/10">
+        <div className="container max-w-4xl text-center space-y-8">
+          <div className="space-y-4">
+            <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+              06 // Connection
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground">
+              Let&rsquo;s Drive Growth Together
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+              I am actively looking for opportunities to contribute to fast-growing teams. If you are looking for an analyst who speaks both math and business, let&rsquo;s connect.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
+              <a href="mailto:jiwon.choi@example.com" className="flex items-center gap-2">
+                <Mail className="h-4 w-4" /> Send an Email
+              </a>
+            </Button>
+            <Button variant="outline" asChild className="border-border/60 hover:bg-muted/30">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <Linkedin className="h-4 w-4" /> Connect on LinkedIn
+              </a>
+            </Button>
+          </div>
+
+          <div className="pt-8 border-t border-border/40 max-w-xs mx-auto">
+            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+              Based in Toronto, Canada
+            </div>
+            <div className="text-xs text-muted-foreground mt-1">
+              Open to local, hybrid, and remote roles.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border/40 py-8 bg-card">
+        <div className="container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
+          <div>
+            © {new Date().getFullYear()} Jiwon Choi. All rights reserved.
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+            <a href="mailto:jiwon.choi@example.com" className="hover:text-foreground transition-colors">Email</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+}
