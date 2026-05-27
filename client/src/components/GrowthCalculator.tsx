@@ -31,10 +31,10 @@ export default function GrowthCalculator() {
           <div>
             <CardTitle className="text-lg font-serif font-semibold text-foreground flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-primary" />
-              Interactive Funnel & Growth Simulator
+              Growth Scenario Modeling Demo
             </CardTitle>
             <CardDescription className="text-xs text-muted-foreground">
-              Demonstrating growth optimization logic (UNIble funnel case study)
+            Illustrative product growth modeling based on hypothetical KPI assumptions
             </CardDescription>
           </div>
           <span className="text-[10px] font-mono bg-primary/10 text-primary px-2 py-0.5 rounded">

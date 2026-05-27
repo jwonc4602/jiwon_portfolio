@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +28,38 @@ import {
 import GrowthCalculator from "@/components/GrowthCalculator";
 
 export default function Home() {
+  const rotatingWords = ["growth", "insights", "funnels", "dashboards", "strategy"];
+
+const [wordIndex, setWordIndex] = useState(0);
+const [typedWord, setTypedWord] = useState("");
+const [isDeleting, setIsDeleting] = useState(false);
+
+useEffect(() => {
+  const currentWord = rotatingWords[wordIndex];
+
+  const speed = isDeleting ? 45 : 110;
+  const pause = 1000;
+
+  const timeout = setTimeout(() => {
+    if (!isDeleting) {
+      if (typedWord.length < currentWord.length) {
+        setTypedWord(currentWord.slice(0, typedWord.length + 1));
+      } else {
+        setTimeout(() => setIsDeleting(true), pause);
+      }
+    } else {
+      if (typedWord.length > 0) {
+        setTypedWord(currentWord.slice(0, typedWord.length - 1));
+      } else {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+      }
+    }
+  }, speed);
+
+  return () => clearTimeout(timeout);
+}, [typedWord, isDeleting, wordIndex]);
+
   const [activeTab, setActiveTab] = useState<string>("all");
 
   // Project details
@@ -35,54 +67,54 @@ export default function Home() {
     {
       id: "unible",
       category: "product",
-      title: "UNIble Product Growth Analytics",
-      summary: "End-to-end analysis of onboarding funnels, user retention, and feature adoption to boost platform stickiness.",
-      question: "Where are users dropping off during onboarding, and how can we optimize feature discovery to increase retention?",
-      tools: ["Firebase", "SQL", "Power BI", "Funnel Analysis"],
+      title: "UNIble Product Engagement & Funnel Analysis",
+      summary: "Product analytics case study exploring onboarding funnels, feature adoption, and retention patterns using simulated user event data based on real product workflows.",
+      question: "Which onboarding and engagement behaviors are most strongly associated with long-term retention in student productivity platforms?",
+      tools: ["Firebase", "SQL", "Power BI", "Cohort Analysis"],
       insights: [
-        "Identified a 34% drop-off at the profile completion step due to excessive fields.",
-        "Discovered that users who engaged with the peer-matching feature within 48 hours had a 2.8x higher Week 4 retention rate."
+        "Built a simulated product event dataset based on UNIble's onboarding and feature interaction flows to analyze user activation patterns.",
+        "Explored how onboarding completion, notification opt-in, and early feature engagement could influence Week 4 retention and recurring usage behavior."
       ],
-      impact: "Recommended a simplified 2-step onboarding flow and triggered in-app nudges for peer-matching, resulting in an estimated +22% conversion uplift."
+      impact: "Developed a product analytics framework to evaluate onboarding friction, engagement drivers, and feature prioritization opportunities for future product growth experiments."
     },
     {
       id: "marketing",
       category: "marketing",
       title: "Marketing Performance & Audience Insights",
-      summary: "Comprehensive ROAS optimization and multi-channel campaign performance audit to maximize customer acquisition.",
-      question: "Which acquisition channels and creative styles drive the highest quality audience segments with the lowest CAC?",
+      summary: "Campaign performance analysis project focused on ROAS optimization, audience segmentation, and marketing KPI evaluation across multi-channel datasets.",
+      question: "Which audience segments, creatives, and campaign structures demonstrate the strongest marketing efficiency and engagement performance?",
       tools: ["Excel", "Pivot Tables", "KPI Analysis", "Audience Segmentation"],
       insights: [
-        "Uncovered that while paid social had 40% higher click-through rates, organic referral traffic had a 55% higher customer lifetime value (LTV).",
-        "Identified 'student life hacks' video creatives outperformed traditional static banners by 2.4x in ROAS."
+        "Analyzed campaign-level performance metrics including ROAS, CPM, CTR, and conversion efficiency across multiple audience and creative segments.",
+        "Identified meaningful performance differences between campaign structures, suggesting opportunities for more targeted audience segmentation and budget allocation strategies."
       ],
-      impact: "Proposed shifting 15% of underperforming ad spend to peer-referral incentive programs, projecting a 12% reduction in overall CAC."
+      impact: "Developed data-driven recommendations around audience targeting, creative optimization, and marketing spend allocation by translating campaign performance metrics into actionable business insights."
     },
     {
       id: "credit",
       category: "risk",
       title: "Credit Default Risk Analysis",
-      summary: "Predictive modeling and risk indicators analysis to segment high-risk borrowers and improve credit approval decisions.",
-      question: "Can we predict loan default probability early using demographic and initial behavioral risk indicators?",
-      tools: ["Python", "XGBoost", "Azure", "Predictive Modeling"],
+      summary: "Credit risk modeling project using real loan application and bureau datasets to identify borrower-level risk indicators and evaluate default prediction performance.",
+      question: "Which borrower and bureau-level features are most useful for identifying potential default risk in consumer credit applications?",
+      tools: ["Python", "Pandas", "Scikit-learn", "XGBoost", "Azure"],
       insights: [
-        "XGBoost model achieved an AUC-ROC of 0.86, with debt-to-income ratio and payment delay history identified as the top predictive risk indicators.",
-        "Discovered a micro-segment of young professionals with high credit utilization but extremely low default rates when paired with autopay enrollment."
+        "Merged loan application, bureau, and bureau balance datasets to engineer credit behavior features such as maximum overdue amount, days overdue, and delinquency status.",
+        "Trained and evaluated gradient boosting models for default prediction, achieving a ROC-AUC score of 0.86 while identifying overdue history and debt-related variables as key predictive indicators."
       ],
-      impact: "Developed a risk-scoring dashboard on Azure that automates approval recommendations, reducing manual review workloads by 30% while keeping defaults within a tight 1.5% margin."
+      impact: "Leveraged Azure GPU computing to accelerate model training and experimentation workflows by approximately 6x, demonstrating how bureau-level repayment history and behavioral features can support structured credit risk analysis."
     },
     {
       id: "nlp",
       category: "insights",
-      title: "NLP Audience Sentiment Analysis",
-      summary: "Social listening and emotion trend extraction from student communities to drive product marketing strategy.",
-      question: "What are the core emotional drivers and pain points discussed in student forums regarding academic and career transitions?",
-      tools: ["Python", "Hugging Face", "PyTorch", "Sentiment Analysis"],
+      title: "Emotion Classification & Audience Insight Analysis",
+      summary: "Team-based NLP research project exploring how transformer-based emotion classification can support audience sentiment understanding.",
+      question: "How can emotion classification models help identify recurring sentiment patterns and audience themes in large-scale social text data?",
+      tools: ["Python", "Hugging Face", "PyTorch", "GoEmotions"],
       insights: [
-        "Extracted 3 dominant emotion trends: anxiety around internship hunting (54%), confusion over networking (28%), and motivation for self-improvement (18%).",
-        "Discovered that mentions of 'resume reviews' spikes on Tuesday evenings, indicating prime timing for marketing campaign delivery."
+        "Collaborated on a team-based NLP project analyzing 58K+ GoEmotions text samples to explore recurring emotional patterns across online discussions.",
+        "Benchmarked transformer-based models including RoBERTa and DistilBERT for multi-label emotion classification using Hugging Face Transformers."
       ],
-      impact: "Informed the product team's content roadmap, leading to the creation of targeted 'Resume & Growth workshops' that achieved a 45% signup rate."
+      impact: "Translated model outputs into audience insight use cases, showing how emotion classification could support social listening, content strategy, and engagement analysis for digital products and online communities."
     }
   ];
 
@@ -91,12 +123,34 @@ export default function Home() {
     {
       role: "Product Operations & Growth Analytics",
       company: "UNIble",
-      period: "Sept 2025 – Present",
+      period: "Aug 2025 – Present",
       bullets: [
-        "Led product funnel optimization initiatives by designing custom KPI dashboards, identifying drop-offs, and recommending actionable onboarding flow improvements.",
-        "Formulated data-driven product growth strategies, collaborating with design and engineering teams to launch targeted in-app experimentations.",
-        "Conducted multi-channel acquisition audits to optimize marketing spend, identifying high-LTV student cohorts to reduce customer acquisition costs.",
-        "Synthesized complex statistical analyses into clear executive briefs for cross-functional stakeholders, aligning product updates with strategic business goals."
+        "Defined product KPIs, analytics events, and reporting logic to help evaluate onboarding, activation, retention, and early user engagement.",
+        "Designed Firebase event structure and SQL-ready tracking logic to support future funnel, cohort, and feature adoption analysis.",
+        "Planned early campus growth initiatives across social content, QR campaigns, referrals, and student communities to compare acquisition channels and messaging ideas.",
+        "Coordinated execution across product, design, and development workstreams, supporting launch readiness for core app modules and improving sprint planning clarity."
+      ]
+    },
+    {
+      role: "Machine Learning Engineer (NLP)",
+      company: "UTMIST",
+      period: "Oct 2024 – May 2025",
+      bullets: [
+        "Benchmarked transformer-based NLP models including BERT, RoBERTa, and DistilBERT on large-scale multi-label emotion classification datasets.",
+        "Worked with 58K+ social text samples using Hugging Face Transformers and PyTorch to evaluate sentiment and emotion classification performance.",
+        "Compared model accuracy, macro F1, and inference efficiency across multiple architectures to analyze trade-offs in NLP model selection.",
+        "Explored applications of emotion classification and audience sentiment analysis for online communities and behavioral insight generation."
+      ]
+    },
+    {
+      role: "Statistical Research & Data Analysis",
+      company: "Toronto Open Data Projects",
+      period: "Jan 2024 – Mar 2025",
+      bullets: [
+        "Conducted statistical analyses using Toronto Open Data to study urban systems, demographic trends, and operational resource allocation patterns.",
+        "Applied Bayesian regression and exploratory data analysis techniques to projects involving waste management, homelessness, and public infrastructure datasets.",
+        "Designed data visualizations and analytical reports using PowerBI and Tableau to communicate geographic and demographic insights from large-scale municipal datasets.",
+        "Performed data cleaning, transformation, and modeling workflows in Python, SQL and R across multiple research-focused analytics projects."
       ]
     }
   ];
@@ -133,25 +187,49 @@ export default function Home() {
   // Blog / Insights previews
   const blogPosts = [
     {
-      title: "What Makes Users Stay? Deconstructing Retention Loops",
-      excerpt: "Why standard onboarding fails and how identifying 'aha moments' through cohort analysis can turn casual signups into daily active users.",
-      date: "May 2026",
-      readTime: "5 min read",
-      category: "Product Analytics"
+      title: "2024 U.S. Presidential Election Forecast",
+      excerpt:
+        "Applied a Bayesian generalized linear model to poll-of-polls data to analyze Harris support, accounting for pollster effects, population type, and poll recency.",
+      date: "Research Paper",
+      readTime: "Bayesian GLM",
+      category: "Forecasting",
+      link: "/papers/paper2024_US_Election_Forecast.pdf"
     },
     {
-      title: "Why Most Dashboards Fail (And How to Build Ones That Drive Action)",
-      excerpt: "Most dashboards are data graveyards. Here is how to design highly-focused executive views around actionable KPIs instead of vanity metrics.",
-      date: "April 2026",
-      readTime: "4 min read",
-      category: "Business Insights"
+      title: "2020 U.S. Election Result Analysis",
+      excerpt:
+        "Used multilevel regression and post-stratification to analyze how gender, education, and geography shaped voting patterns in the 2020 U.S. Presidential Election.",
+      date: "Research Paper",
+      readTime: "MRP",
+      category: "Statistical Modeling",
+      link: "/papers/paper2020_US_Election_Result_Analysis.pdf"
     },
     {
-      title: "What Growth Analytics Actually Means in Early-Stage Products",
-      excerpt: "Moving past the buzzwords. A practical look at balancing acquisition, activation, and retention metrics when resources are limited.",
-      date: "March 2026",
-      readTime: "6 min read",
-      category: "Growth Strategy"
+      title: "Urban Waste Management in Toronto",
+      excerpt:
+        "Analyzed Toronto waste collection patterns using demographic, housing, and ward-level data to study operational efficiency and equitable resource allocation.",
+      date: "Research Paper",
+      readTime: "Bayesian Modeling",
+      category: "Operations Insights",
+      link: "/papers/paperWaste-and-Recycling-in-Toronto.pdf"
+    },
+    {
+      title: "Toronto Homelessness Pattern Analysis",
+      excerpt:
+        "Explored geographic and demographic patterns in Toronto shelter demand using SMIS occupancy and capacity data to identify service gaps and resource needs.",
+      date: "Research Paper",
+      readTime: "Public Data Analysis",
+      category: "Social Insights",
+      link: "/papers/paperAnalyzing-Geographic-and-Demographic-Patterns-of-Homelessness.pdf"
+    },
+    {
+      title: "2023–24 EPL Forecasting Model",
+      excerpt:
+        "Built a Bayesian regression model using possession, goals, expected goals, progressive passes, and carries to forecast EPL team points and performance drivers.",
+      date: "Research Paper",
+      readTime: "Sports Analytics",
+      category: "Forecasting",
+      link: "/papers/paper23-24-EPL-Forecast.pdf"
     }
   ];
 
@@ -174,7 +252,7 @@ export default function Home() {
         <div className="container py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="font-serif font-bold text-lg tracking-tight text-foreground">
-              jiwon<span className="text-primary">.</span>choi
+              Jiwon<span className="text-primary"> </span>Choi
             </span>
             <span className="hidden sm:inline-block text-[10px] font-mono bg-secondary px-2 py-0.5 rounded text-secondary-foreground">
               Applied Statistics @ U of T
@@ -185,7 +263,7 @@ export default function Home() {
             <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
             <a href="#skills" className="hover:text-foreground transition-colors">Skills</a>
             <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
-            <a href="#insights" className="hover:text-foreground transition-colors">Insights</a>
+            <a href="#insights" className="hover:text-foreground transition-colors">Research</a>
             <Button variant="outline" size="sm" asChild className="hidden sm:inline-flex border-border/60 hover:bg-muted/30">
               <a href="#contact">Contact</a>
             </Button>
@@ -209,7 +287,7 @@ export default function Home() {
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-mono font-medium">
               <Sparkles className="h-3 w-3 text-secondary-foreground" />
-              <span>Available for Product & Growth Analytics Roles</span>
+              <span>Open to Data-Driven Product, Strategy & Analytics Roles</span>
             </div>
             
             <div className="space-y-3">
@@ -221,9 +299,14 @@ export default function Home() {
               </p>
             </div>
 
-            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-              Turning data into growth, engagement, and actionable business insights. Bridging the gap between rigorous statistics and high-impact product strategy.
-            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed tracking-[-0.01em]">
+  Turning data into{" "}
+  <span className="text-primary font-medium border-b border-primary/30">
+    {typedWord}
+    <span className="animate-pulse">|</span>
+  </span>
+  , engagement, and actionable business insights. Bridging the gap between rigorous statistics and high-impact product strategy.
+</p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
@@ -238,13 +321,13 @@ export default function Home() {
 
             {/* Social Links */}
             <div className="flex items-center gap-6 pt-6 border-t border-border/40 max-w-md">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
+              <a href="https://www.linkedin.com/in/jwonc4602/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
                 <Linkedin className="h-4 w-4" /> LinkedIn
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
+              <a href="https://github.com/jwonc4602" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
                 <Github className="h-4 w-4" /> GitHub
               </a>
-              <a href="mailto:jiwon.choi@example.com" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
+              <a href="mailto:jadechoi316@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono">
                 <Mail className="h-4 w-4" /> Email
               </a>
             </div>
@@ -252,13 +335,13 @@ export default function Home() {
 
           {/* Hero Image / Illustration */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[380px] aspect-square rounded-2xl bg-card border border-border/40 p-4 shadow-md overflow-hidden">
+            {/* <div className="relative w-full max-w-[380px] aspect-square rounded-2xl bg-card border border-border/40 p-4 shadow-md overflow-hidden">
               <img 
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663704297874/XgnwZVUyWtDSJq4fqeVyPH/analytics-illustration-KqdhFnrf6qgRE95qUxmCYw.webp" 
                 alt="Product Analytics Illustration" 
                 className="w-full h-full object-contain rounded-xl"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -280,7 +363,7 @@ export default function Home() {
             {/* Right Content */}
             <div className="lg:col-span-8 space-y-6 text-muted-foreground leading-relaxed text-base">
               <p>
-                As an <strong>Applied Statistics graduate from the University of Toronto</strong>, I spent years studying probability, regression models, and experimental design. But what truly excites me is not just the mathematical elegance of a model — it is applying that rigor to understand <strong>human behavior, optimize products, and drive real business growth</strong>.
+                As an <strong>Math and Stats graduate from the University of Toronto</strong>, I spent years studying probability, regression models, and experimental design. But what truly excites me is not just the mathematical elegance of a model — it is applying that rigor to understand <strong>human behavior, optimize products, and drive real business growth</strong>.
               </p>
               <p>
                 I position myself at the intersection of <strong>analytics, product strategy, and storytelling</strong>. I believe that data is only as valuable as the actions it inspires. That is why I focus heavily on translating complex metrics into intuitive, visual, and highly-actionable growth frameworks that product, marketing, and executive teams can immediately rally behind.
@@ -293,7 +376,7 @@ export default function Home() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-border/40">
                 <div className="space-y-1">
                   <div className="text-lg font-bold text-foreground font-serif">U of T</div>
-                  <div className="text-xs text-muted-foreground font-mono">Applied Statistics</div>
+                  <div className="text-xs text-muted-foreground font-mono">Applied Statistics and Mathematical Sciences</div>
                 </div>
                 <div className="space-y-1">
                   <div className="text-lg font-bold text-foreground font-serif">Growth-First</div>
@@ -471,7 +554,7 @@ export default function Home() {
                 04 // Professional Path
               </span>
               <h2 className="text-3xl font-serif font-bold text-foreground">
-                Hands-On Growth Experience
+                Hands-On Analytics Experience
               </h2>
             </div>
 
@@ -513,49 +596,58 @@ export default function Home() {
 
       {/* Optional Blog / Insights Section */}
       <section id="insights" className="py-20 border-b border-border/40">
-        <div className="container space-y-12">
-          <div className="space-y-4">
-            <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
-              05 // Thought Leadership
-            </span>
-            <h2 className="text-3xl font-serif font-bold text-foreground">
-              Analytics & Growth Insights
-            </h2>
-            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-              Writing about the practical application of statistics to product growth and business metrics.
-            </p>
-          </div>
+  <div className="container space-y-12">
+    <div className="space-y-4">
+      <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+        05 // Research & Writing
+      </span>
+      <h2 className="text-3xl font-serif font-bold text-foreground">
+        Applied Statistical Research
+      </h2>
+      <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
+        Selected research papers applying statistical modeling, forecasting, and public data analysis to real-world questions.
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {blogPosts.map((post, idx) => (
-              <Card key={idx} className="border-border/60 hover:border-primary/20 hover:shadow-sm transition-all bg-card flex flex-col justify-between">
-                <CardContent className="p-5 space-y-4 flex-1 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
-                      <span>{post.date}</span>
-                      <span className="bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded">
-                        {post.category}
-                      </span>
-                    </div>
-                    <h3 className="text-md font-serif font-bold text-foreground leading-snug hover:text-primary transition-colors cursor-pointer">
-                      {post.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-border/40 flex items-center justify-between text-[10px] font-mono text-primary font-semibold">
-                    <span>{post.readTime}</span>
-                    <span className="flex items-center gap-1 hover:underline cursor-pointer">
-                      Read Article <ArrowUpRight className="h-3 w-3" />
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {blogPosts.map((post, idx) => (
+        <Card key={idx} className="border-border/60 hover:border-primary/20 hover:shadow-sm transition-all bg-card flex flex-col justify-between">
+          <CardContent className="p-5 space-y-4 flex-1 flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
+                <span>{post.date}</span>
+                <span className="bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded">
+                  {post.category}
+                </span>
+              </div>
+
+              <h3 className="text-md font-serif font-bold text-foreground leading-snug hover:text-primary transition-colors">
+                {post.title}
+              </h3>
+
+              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4">
+                {post.excerpt}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-border/40 flex items-center justify-between text-[10px] font-mono text-primary font-semibold">
+              <span>{post.readTime}</span>
+
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:underline cursor-pointer"
+              >
+                View Paper <ArrowUpRight className="h-3 w-3" />
+              </a>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-muted/10">
@@ -574,12 +666,12 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
-              <a href="mailto:jiwon.choi@example.com" className="flex items-center gap-2">
+              <a href="mailto:jadechoi316@gmail.com" className="flex items-center gap-2">
                 <Mail className="h-4 w-4" /> Send an Email
               </a>
             </Button>
             <Button variant="outline" asChild className="border-border/60 hover:bg-muted/30">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              <a href="https://www.linkedin.com/in/jwonc4602/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 <Linkedin className="h-4 w-4" /> Connect on LinkedIn
               </a>
             </Button>
@@ -603,9 +695,9 @@ export default function Home() {
             © {new Date().getFullYear()} Jiwon Choi. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
-            <a href="mailto:jiwon.choi@example.com" className="hover:text-foreground transition-colors">Email</a>
+            <a href="https://www.linkedin.com/in/jwonc4602/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a href="https://github.com/jwonc4602" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+            <a href="mailto:jadechoi316@gmail.com" className="hover:text-foreground transition-colors">Email</a>
           </div>
         </div>
       </footer>
