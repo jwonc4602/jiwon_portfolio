@@ -432,7 +432,10 @@ useEffect(() => {
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
             {filteredProjects.map((project) => (
-              <Card key={project.id} className="border-border/60 hover:border-primary/40 hover:shadow-md transition-all duration-300 bg-card flex flex-col justify-between overflow-hidden">
+              <Card
+              key={project.id}
+              className="border-border/60 hover:border-primary/40 hover:shadow-md transition-all duration-300 hover:-translate-y-1 bg-card flex flex-col justify-between overflow-hidden"
+            >
                 <CardContent className="p-6 space-y-6">
                   {/* Card Header */}
                   <div className="space-y-2">
