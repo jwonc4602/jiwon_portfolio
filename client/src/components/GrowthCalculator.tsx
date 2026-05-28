@@ -172,7 +172,7 @@ export default function GrowthCalculator() {
           <div className="mt-4 pt-3 border-t border-border/40 bg-primary/5 -mx-5 -mb-5 p-4 rounded-b-lg flex items-center justify-between">
             <div>
               <span className="text-[10px] font-mono text-primary uppercase tracking-wider block font-semibold">
-                Simulated Business Impact
+                Modeled Business Impact
               </span>
               <span className="text-xs text-muted-foreground">
                 Funnel optimization incremental value

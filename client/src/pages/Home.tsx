@@ -68,14 +68,14 @@ useEffect(() => {
       id: "unible",
       category: "product",
       title: "UNIble Product Engagement & Funnel Analysis",
-      summary: "Product analytics case study exploring onboarding funnels, feature adoption, and retention patterns using simulated user event data based on real product workflows.",
+      summary: "Product analytics case study exploring onboarding funnels, feature adoption, and retention patterns based on real UNIble product workflows and planned event-tracking logic.",
       question: "Which onboarding and engagement behaviors are most strongly associated with long-term retention in student productivity platforms?",
       tools: ["Firebase", "SQL", "Power BI", "Cohort Analysis"],
       insights: [
-        "Built a simulated product event dataset based on UNIble's onboarding and feature interaction flows to analyze user activation patterns.",
+        "Mapped UNIble's onboarding and feature interaction flows into an analytics-ready event structure to support activation and retention analysis.",
         "Explored how onboarding completion, notification opt-in, and early feature engagement could influence Week 4 retention and recurring usage behavior."
       ],
-      impact: "Developed a product analytics framework to evaluate onboarding friction, engagement drivers, and feature prioritization opportunities for future product growth experiments."
+      impact: "Built a product analytics framework to identify onboarding friction, define engagement signals, and prioritize future growth experiments."
     },
     {
       id: "marketing",
@@ -92,7 +92,7 @@ useEffect(() => {
     },
     {
       id: "credit",
-      category: "risk",
+      category: "research",
       title: "Credit Default Risk Analysis",
       summary: "Credit risk modeling project using real loan application and bureau datasets to identify borrower-level risk indicators and evaluate default prediction performance.",
       question: "Which borrower and bureau-level features are most useful for identifying potential default risk in consumer credit applications?",
@@ -105,7 +105,7 @@ useEffect(() => {
     },
     {
       id: "nlp",
-      category: "insights",
+      category: "research",
       title: "Emotion Classification & Audience Insight Analysis",
       summary: "Team-based NLP research project exploring how transformer-based emotion classification can support audience sentiment understanding.",
       question: "How can emotion classification models help identify recurring sentiment patterns and audience themes in large-scale social text data?",
@@ -165,7 +165,7 @@ useEffect(() => {
     {
       title: "Business Insights & KPI Reporting",
       icon: <BarChart3 className="h-4 w-4 text-primary" />,
-      skills: ["KPI Framework Design", "Executive Dashboards", "Data Storytelling", "Stakeholder Communication", "Revenue & LTV Modeling"]
+      skills: ["KPI Framework Design", "Executive Dashboards", "Data Storytelling", "Stakeholder Communication", "Revenue Scenario Analysis"]
     },
     {
       title: "Marketing & Audience Analytics",
@@ -180,7 +180,7 @@ useEffect(() => {
     {
       title: "Collaboration & Strategy",
       icon: <Layers className="h-4 w-4 text-primary" />,
-      skills: ["Cross-functional Leadership", "Product Operations", "Agile Methodologies", "User Research Synthesis", "Market Opportunity Analysis"]
+      skills: ["Cross-functional Collaboration", "Sprint Planning", "Product Documentation", "User Research Synthesis", "Market Opportunity Analysis"]
     }
   ];
 
@@ -189,7 +189,9 @@ useEffect(() => {
     {
       title: "2024 U.S. Presidential Election Forecast",
       excerpt:
-        "Applied a Bayesian generalized linear model to poll-of-polls data to analyze Harris support, accounting for pollster effects, population type, and poll recency.",
+        "Built a Bayesian forecasting model to analyze polling trends, pollster effects, population type, and poll recency in a high-uncertainty environment.",
+        relevance:
+        "The same poll-noise adjustment logic can be applied to customer survey analysis, brand tracking, and market research data where sample quality varies.",
       date: "Research Paper",
       readTime: "Bayesian GLM",
       category: "Forecasting",
@@ -198,7 +200,9 @@ useEffect(() => {
     {
       title: "2020 U.S. Election Result Analysis",
       excerpt:
-        "Used multilevel regression and post-stratification to analyze how gender, education, and geography shaped voting patterns in the 2020 U.S. Presidential Election.",
+        "Used multilevel regression and post-stratification to analyze how demographic and geographic factors shaped voting behavior.",
+        relevance:
+        "The same MRP framework can be used to estimate customer behavior across demographic segments when direct sample sizes are limited.",
       date: "Research Paper",
       readTime: "MRP",
       category: "Statistical Modeling",
@@ -207,7 +211,9 @@ useEffect(() => {
     {
       title: "Urban Waste Management in Toronto",
       excerpt:
-        "Analyzed Toronto waste collection patterns using demographic, housing, and ward-level data to study operational efficiency and equitable resource allocation.",
+        "Analyzed Toronto waste collection patterns using demographic, housing, and ward-level data to study operational efficiency and resource allocation.",
+        relevance:
+        "The same resource allocation analysis can be applied to store operations, delivery zones, support capacity, or local market planning.",
       date: "Research Paper",
       readTime: "Bayesian Modeling",
       category: "Operations Insights",
@@ -216,7 +222,9 @@ useEffect(() => {
     {
       title: "Toronto Homelessness Pattern Analysis",
       excerpt:
-        "Explored geographic and demographic patterns in Toronto shelter demand using SMIS occupancy and capacity data to identify service gaps and resource needs.",
+        "Explored geographic and demographic patterns in Toronto shelter demand using occupancy and capacity data to identify service gaps.",
+        relevance:
+        "The same demand-pattern analysis can be applied to customer support volume, service capacity planning, or location-based demand forecasting.",
       date: "Research Paper",
       readTime: "Public Data Analysis",
       category: "Social Insights",
@@ -225,7 +233,9 @@ useEffect(() => {
     {
       title: "2023–24 EPL Forecasting Model",
       excerpt:
-        "Built a Bayesian regression model using possession, goals, expected goals, progressive passes, and carries to forecast EPL team points and performance drivers.",
+        "Built a Bayesian regression model using possession, goals, expected goals, progressive passes, and carries to forecast team performance.",
+        relevance:
+        "The same multivariable forecasting approach can be applied to user retention prediction, campaign performance modeling, and product growth trend analysis.",
       date: "Research Paper",
       readTime: "Sports Analytics",
       category: "Forecasting",
@@ -261,9 +271,9 @@ useEffect(() => {
           <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
             <a href="#about" className="hover:text-foreground transition-colors">About</a>
             <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
+            <a href="#insights" className="hover:text-foreground transition-colors">Research</a>
             <a href="#skills" className="hover:text-foreground transition-colors">Skills</a>
             <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
-            <a href="#insights" className="hover:text-foreground transition-colors">Research</a>
             <Button variant="outline" size="sm" asChild className="hidden sm:inline-flex border-border/60 hover:bg-muted/30">
               <a href="#contact">Contact</a>
             </Button>
@@ -287,7 +297,7 @@ useEffect(() => {
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-mono font-medium">
               <Sparkles className="h-3 w-3 text-secondary-foreground" />
-              <span>Open to Data-Driven Product, Strategy & Analytics Roles</span>
+              <span>Open to Product, Growth & Business Analytics Roles</span>
             </div>
             
             <div className="space-y-3">
@@ -410,7 +420,7 @@ useEffect(() => {
             
             {/* Filter Tabs */}
             <div className="flex flex-wrap gap-2 font-mono text-xs">
-              {["all", "product", "marketing", "risk", "insights"].map((tab) => (
+            {["all", "product", "marketing", "research"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -503,6 +513,65 @@ useEffect(() => {
         </div>
       </section>
 
+      {/* Optional Blog / Insights Section */}
+      <section id="insights" className="py-20 border-b border-border/40">
+  <div className="container space-y-12">
+    <div className="space-y-4">
+      <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
+        03 // Research & Writing
+      </span>
+      <h2 className="text-3xl font-serif font-bold text-foreground">
+      Statistical Modeling & Business Insights
+      </h2>
+      <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
+      Selected research papers showing how I apply statistical modeling, forecasting, and public data analysis to noisy, real-world decision problems.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {blogPosts.map((post, idx) => (
+        <Card key={idx} className="border-border/60 hover:border-primary/20 hover:shadow-sm transition-all bg-card flex flex-col justify-between">
+          <CardContent className="p-5 space-y-4 flex-1 flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
+                <span>{post.date}</span>
+                <span className="bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded">
+                  {post.category}
+                </span>
+              </div>
+
+              <h3 className="text-md font-serif font-bold text-foreground leading-snug hover:text-primary transition-colors">
+                {post.title}
+              </h3>
+
+              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4">
+                {post.excerpt}
+              </p>
+              <p className="text-[11px] text-foreground/80 leading-relaxed border-l-2 border-primary/30 pl-3">
+              <span className="font-semibold text-primary">How this translates:</span>
+              {post.relevance}
+            </p>
+            </div>
+
+            <div className="pt-4 border-t border-border/40 flex items-center justify-between text-[10px] font-mono text-primary font-semibold">
+              <span>{post.readTime}</span>
+
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:underline cursor-pointer"
+              >
+                View Paper <ArrowUpRight className="h-3 w-3" />
+              </a>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
       {/* Skills Section */}
       <section id="skills" className="py-20 border-b border-border/40">
         <div className="container">
@@ -510,7 +579,7 @@ useEffect(() => {
             {/* Left Header */}
             <div className="lg:col-span-4 space-y-4">
               <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
-                03 // Expertise
+                04 // Expertise
               </span>
               <h2 className="text-3xl font-serif font-bold text-foreground">
                 Analytical Toolkit & Core Competencies
@@ -556,10 +625,10 @@ useEffect(() => {
             {/* Left Header */}
             <div className="lg:col-span-4 space-y-4">
               <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
-                04 // Professional Path
+                05 // Professional Path
               </span>
               <h2 className="text-3xl font-serif font-bold text-foreground">
-                Hands-On Analytics Experience
+              Applied Analytics Experience
               </h2>
             </div>
 
@@ -599,60 +668,6 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* Optional Blog / Insights Section */}
-      <section id="insights" className="py-20 border-b border-border/40">
-  <div className="container space-y-12">
-    <div className="space-y-4">
-      <span className="text-xs font-mono uppercase tracking-wider text-primary font-bold">
-        05 // Research & Writing
-      </span>
-      <h2 className="text-3xl font-serif font-bold text-foreground">
-        Applied Statistical Research
-      </h2>
-      <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-        Selected research papers applying statistical modeling, forecasting, and public data analysis to real-world questions.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-      {blogPosts.map((post, idx) => (
-        <Card key={idx} className="border-border/60 hover:border-primary/20 hover:shadow-sm transition-all bg-card flex flex-col justify-between">
-          <CardContent className="p-5 space-y-4 flex-1 flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
-                <span>{post.date}</span>
-                <span className="bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded">
-                  {post.category}
-                </span>
-              </div>
-
-              <h3 className="text-md font-serif font-bold text-foreground leading-snug hover:text-primary transition-colors">
-                {post.title}
-              </h3>
-
-              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4">
-                {post.excerpt}
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-border/40 flex items-center justify-between text-[10px] font-mono text-primary font-semibold">
-              <span>{post.readTime}</span>
-
-              <a
-                href={post.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 hover:underline cursor-pointer"
-              >
-                View Paper <ArrowUpRight className="h-3 w-3" />
-              </a>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-muted/10">
