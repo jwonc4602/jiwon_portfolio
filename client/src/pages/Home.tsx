@@ -395,8 +395,8 @@ useEffect(() => {
                   <div className="text-xs text-muted-foreground font-mono">Analytical Mindset</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-lg font-bold text-foreground font-serif">Data-Led</div>
-                  <div className="text-xs text-muted-foreground font-mono">Storytelling</div>
+                <div className="text-lg font-bold text-foreground font-serif">Certified</div>
+                <div className="text-xs text-muted-foreground font-mono">PL-300 • Google Analytics • SEO</div>
                 </div>
               </div>
             </div>
